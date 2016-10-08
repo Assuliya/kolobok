@@ -2,8 +2,12 @@ body, html {
     height: 100%;
 }
 
+* {
+  font-family: monospace;
+}
+
 #big_image1, #big_image2, #big_image3,
-#big_image4, #big_image5 {
+#big_image4, #big_image5, #big_image6 {
     opacity: 1;
     background-attachment: fixed;
     background-position: center;
@@ -37,6 +41,11 @@ body, html {
     min-height: 400px;
 }
 
+#big_image6 {
+    background-image: url("../images/road5.jpg");
+    min-height: 400px;
+}
+
 /* Turn off parallax scrolling for tablets and mobiles */
 @media only screen and (max-width: 1024px) {
     .bgimg-1, .bgimg-2, .bgimg-3 {
@@ -46,5 +55,10 @@ body, html {
 
 
 #end{
-  background-color: lightgrey;
+  background-color: black;
+  color: white;
+}
+
+input {
+  display: block;
 }
