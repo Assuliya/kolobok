@@ -9,9 +9,7 @@
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
 </head>
-
 <body id="Top">
       <div class="text-center" id="opening">
         <h3>KOLOBOK</h3>
@@ -214,45 +212,56 @@
         <h3 class="text-center">Test</h3>
         <p class="text-center"><em>Please fill in the questions to see how well you know the story</em></p>
         <br>
-        <form action="process.php" method="post">
+        <form role="form" action="{% url 'index' %}" method="post">
+          {% csrf_token %}
           <div class="row">
             <div class="col-md-offset-3 col-md-4">
-            	<label>Question 1:</label>
-            	<input type="radio" name="ethnicity" value="a"> a
-              <input type="radio" name="ethnicity" value="b"> b
-              <input type="radio" name="ethnicity" value="c"> c
-              <input type="radio" name="ethnicity" value="d"> d
-              <label>Question 2:</label>
-            	<input type="radio" name="ethnicity" value="a"> a
-              <input type="radio" name="ethnicity" value="b"> b
-              <input type="radio" name="ethnicity" value="c"> c
-              <input type="radio" name="ethnicity" value="d"> d
-              <label>Question 3:</label>
-              <input type="radio" name="ethnicity" value="a"> a
-              <input type="radio" name="ethnicity" value="b"> b
-              <input type="radio" name="ethnicity" value="c"> c
-              <input type="radio" name="ethnicity" value="d"> d
+            	<h4>Question 1: How wealthy were the old man and old woman?</h4>
+            	<input type="radio" name="1" value="a"> Very rich
+              <input type="radio" name="1" value="b"> Rich
+              <input type="radio" name="1" value="c"> Not so rich
+              <input type="radio" name="1" value="d"> Very poor
+              <h4>Question 2: What was Kolobok made out of?</h4>
+            	<input type="radio" name="2" value="a"> Flour
+              <input type="radio" name="2" value="b"> Rock
+              <input type="radio" name="2" value="c"> Wood
+              <input type="radio" name="2" value="d"> Metal
+              <h4>Question 3: Who baked Kolobok?</h4>
+              <input type="radio" name="3" value="a"> Rabbit
+              <input type="radio" name="3" value="b"> Wolf
+              <input type="radio" name="3" value="c"> Fox
+              <input type="radio" name="3" value="d"> Old man and old woman
             </div>
             <div class="col-md-4">
-              <label>Question 4:</label>
-              <input type="radio" name="ethnicity" value="a"> a
-              <input type="radio" name="ethnicity" value="b"> b
-              <input type="radio" name="ethnicity" value="c"> c
-              <input type="radio" name="ethnicity" value="d"> d
-              <label>Question 5:</label>
-              <input type="radio" name="ethnicity" value="a"> a
-              <input type="radio" name="ethnicity" value="b"> b
-              <input type="radio" name="ethnicity" value="c"> c
-              <input type="radio" name="ethnicity" value="d"> d
-              <label>Question 6:</label>
-              <input type="radio" name="ethnicity" value="a"> a
-              <input type="radio" name="ethnicity" value="b"> b
-              <input type="radio" name="ethnicity" value="c"> c
-              <input type="radio" name="ethnicity" value="d"> d
+              <h4>Question 4: Who did Kolobok meet first?</h4>
+              <input type="radio" name="4" value="a"> Bear
+              <input type="radio" name="4" value="b"> Rabbit
+              <input type="radio" name="4" value="c"> Wolf
+              <input type="radio" name="4" value="d"> Fox
+              <h4>Question 5: How did Kolobok managed to get away from the Wolf?</h4>
+              <input type="radio" name="5" value="a"> Did a dance
+              <input type="radio" name="5" value="b"> Sang a song
+              <input type="radio" name="5" value="c"> Told a story
+              <input type="radio" name="5" value="d"> Asked nicely
+              <h4>Question 6: Who ate Kolobok at the end?</h4>
+              <input type="radio" name="6" value="a"> Wolf
+              <input type="radio" name="6" value="b"> Bear
+              <input type="radio" name="6" value="c"> Fox
+              <input type="radio" name="6" value="d"> Rabbit
             </div>
             <div class="row">
               <div class="col-md-offset-3 col-md-4">
                 <input type="submit" value="Done!">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-offset-3 col-md-4">
+                {% if count %}
+                  <h4>Result: {{count}} out of 6</h4>
+                {% endif %}
+                {% for question in result %}
+                  <p>Question {{question.number}} was {{question.check}}</p>
+                {% endfor %}
               </div>
             </div>
           </div>
@@ -268,6 +277,5 @@
         </a><br><br>
         <p>Site Made By <a href="#" data-toggle="tooltip" title="Check-out on Git">Tetiana Nesterchuk</a></p>
       </footer>
-
 </body>
 </html>
